@@ -4,8 +4,7 @@
   "description": "Project to fetch random quotes",
   "husky": {
     "hooks": {
-      "pre-push": "run-p validate:client validate:server",
-      "pre-commit": "run-p validate:client validate:server"
+      "pre-push": "run-p validate:client validate:server"
     }
   },
   "scripts": {

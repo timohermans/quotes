@@ -20,7 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "validate": "run-p test prettier:check prettier:check build lint",
     "prettier:check": "prettier --check  \"src/**/*.{ts,html}\"",
-    "prettier:format": "prettier --write  \"src/**/*.{ts,html}\""
+    "prettier:format": "prettier --write  \"src/**/*.{ts,html}\"",
+    "nest": "nest"
   },
   "dependencies": {
     "@nestjs/common": "^6.7.2",
