@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { QuoteRandomComponent } from './pages/quote-random/quote-random.component';
 
 const routes: Routes = [
     {
@@ -8,16 +9,13 @@ const routes: Routes = [
         pathMatch: 'full',
     },
     {
-        path: 'quotes',
-        loadChildren: () =>
-            import('./features/quotes/quotes.module').then(
-                mod => mod.QuotesModule
-            ),
+        path: 'random',
+        component: QuoteRandomComponent,
     },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class QuotesRoutingModule {}
