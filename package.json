@@ -1,0 +1,23 @@
+{
+  "name": "quotes",
+  "version": "0.0.1",
+  "description": "Project to fetch random quotes",
+  "husky": {
+    "hooks": {
+      "pre-push": "cd client && yarn validate"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timohermans/quotes.git"
+  },
+  "author": "Timo Hermans",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timohermans/quotes/issues"
+  },
+  "homepage": "https://github.com/timohermans/quotes#readme",
+  "devDependencies": {
+    "husky": "^4.2.0"
+  }
+}
