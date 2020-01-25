@@ -10,6 +10,7 @@
     "selector-pseudo-element-no-unknown": [true, {
       "ignorePseudoElements": ["ng-deep"]
     }],
-    "at-rule-blacklist": ["debug"]
+    "at-rule-blacklist": ["debug"],
+    "value-list-comma-newline-after": null
   }
 }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { QuoteService } from '../../services/quote.service';
+import { Quote } from '../../models/quote.model';
+import { Observable } from 'rxjs';
+import { IsLoadingService } from '@service-work/is-loading';
 
 @Component({
     selector: 'app-quote-random',
@@ -6,7 +10,14 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./quote-random.component.scss'],
 })
 export class QuoteRandomComponent implements OnInit {
-    constructor() {}
+    public quote$: Observable<Quote> = this.loadingService.add(
+        this.quoteService.getRandom()
+    );
+
+    constructor(
+        private quoteService: QuoteService,
+        private loadingService: IsLoadingService
+    ) {}
 
     ngOnInit() {}
 }
