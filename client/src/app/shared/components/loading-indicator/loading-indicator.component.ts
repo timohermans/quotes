@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-loading-indicator',
   template: `
-    <p>
-      loading-indicator works!
-    </p>
+    <div [class.loaded]="('default' | swIsLoading | async) === false">
+      <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+      </div>
+    </div>
   `,
   styleUrls: ['./loading-indicator.component.scss'],
 })
-export class LoadingIndicatorComponent implements OnInit {
+export class LoadingIndicatorComponent {
   constructor() {}
-
-  ngOnInit() {}
 }

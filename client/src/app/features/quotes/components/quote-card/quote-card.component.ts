@@ -18,6 +18,8 @@ import { Quote } from '../../models/quote.model';
           </p>
         </div>
       </div>
+
+      <app-loading-indicator></app-loading-indicator>
     </div>
   `,
   styleUrls: ['./quote-card.component.scss'],
