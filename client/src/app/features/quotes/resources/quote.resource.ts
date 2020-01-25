@@ -1,4 +1,4 @@
 export interface QuoteResource {
-    author: string;
-    quote: string;
+  author: string;
+  quote: string;
 }

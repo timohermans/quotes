@@ -8,15 +8,15 @@ import { FeatureModule } from './features/feature.module';
 import { CoreModule } from './core/core.module';
 
 @NgModule({
-    declarations: [AppComponent],
-    imports: [
-        BrowserModule,
-        FeatureModule,
-        AppRoutingModule,
-        SharedModule,
-        CoreModule,
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    FeatureModule,
+    AppRoutingModule,
+    SharedModule,
+    CoreModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

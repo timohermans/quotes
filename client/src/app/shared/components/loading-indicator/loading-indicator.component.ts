@@ -7,13 +7,10 @@ import { Component, OnInit } from '@angular/core';
       loading-indicator works!
     </p>
   `,
-  styleUrls: ['./loading-indicator.component.scss']
+  styleUrls: ['./loading-indicator.component.scss'],
 })
 export class LoadingIndicatorComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

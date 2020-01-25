@@ -6,7 +6,7 @@ import { QuoteCardComponent } from './components/quote-card/quote-card.component
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-    declarations: [QuoteRandomComponent, QuoteCardComponent],
-    imports: [SharedModule, QuotesRoutingModule],
+  declarations: [QuoteRandomComponent, QuoteCardComponent],
+  imports: [SharedModule, QuotesRoutingModule],
 })
 export class QuotesModule {}

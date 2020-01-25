@@ -7,14 +7,14 @@ import { map } from 'rxjs/operators';
 import { QuoteResource } from '../resources/quote.resource';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class QuoteService {
-    constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
-    public getRandom(): Observable<Quote> {
-        return this.httpClient
-            .get<QuoteResource>(`${environment.apiUrl}/quotes/random`)
-            .pipe(map(resource => Quote.fromResource(resource)));
-    }
+  public getRandom(): Observable<Quote> {
+    return this.httpClient
+      .get<QuoteResource>(`${environment.apiUrl}/quotes/random`)
+      .pipe(map(resource => Quote.fromResource(resource)));
+  }
 }
