@@ -15,37 +15,28 @@ jobs:
         node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Base - install
-      run: |
-        yarn install
-    - name: Client - install, build, test
-      run: |
-        yarn setup:client
-        yarn build:client
-        yarn test:client
-    - name: Server - install, build, test
-      run: |
-        yarn setup:server
-        yarn build:server
-        yarn test:server
-      env:
-        CI: true
-    - name: Client - deploy
-      uses: amondnet/now-deployment@v1
-      with:
-        github-token: ${{ secrets.PR_TOKEN }}
-        zeit-token: ${{ secrets.ZEIT_TOKEN }}
-        now-args: '--prod'
-        working-directory: ./client
-    - name: Server - deploy
-      uses: amondnet/now-deployment@v1
-      with:
-        github-token: ${{ secrets.PR_TOKEN }}
-        zeit-token: ${{ secrets.ZEIT_TOKEN }}
-        now-args: '--prod'
-        working-directory: ./server
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Base - install
+        run: |
+          yarn install
+      - name: Server - install, build, test, deploy
+        run: |
+          yarn setup:server
+          yarn build:server
+          yarn test:server
+          npx now --token=${{ secrets.ZEIT_TOKEN }} --prod
+        env:
+          CI: true
+      - name: Client - install, build, test, deploy
+        run: |
+          yarn setup:client
+          yarn build:client
+          yarn test:client
+          npx now --token=${{ secrets.ZEIT_TOKEN }} --prod
+        env:
+          CI: true
+
