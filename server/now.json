@@ -12,5 +12,8 @@
       "src": "/(.*)",
       "dest": "dist/main.js"
     }
-  ]
+  ],
+  "env": {
+    "QUOTES_EXTERNAL_API_URL": "@quote-api-url"
+  }
 }
