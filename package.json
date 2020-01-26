@@ -12,7 +12,7 @@
     "setup:client": "cd client && yarn install",
     "setup:server": "cd server && yarn install",
     "build": "run-p build:client build:server",
-    "build:client": "cd client && yarn build",
+    "build:client": "cd client && yarn build --prod",
     "build:server": "cd server && yarn build",
     "test": "run-p test:client test:server",
     "test:client": "cd client && yarn test",
