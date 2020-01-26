@@ -20,6 +20,7 @@ jobs:
     - name: Base - install
       run: |
         yarn install
+        yarn global add now
     - name: Client - install, build, test
       run: |
         yarn setup:client
@@ -32,3 +33,15 @@ jobs:
         yarn test:server
       env:
         CI: true
+    - name: Client - deploy
+      uses: amondnet/now-deployment@v1
+      with:
+        zeit-token: Qj3fSzOMfwntFyJ1wRO9eQxW
+        now-args: '--prod'
+        working-directory: ./client
+    - name: Server - deploy
+      uses: amondnet/now-deployment@v1
+      with:
+        zeit-token: Qj3fSzOMfwntFyJ1wRO9eQxW
+        now-args: '--prod'
+        working-directory: ./server
