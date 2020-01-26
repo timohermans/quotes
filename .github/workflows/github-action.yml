@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - hotfix/angular-build
 
 jobs:
   build:
