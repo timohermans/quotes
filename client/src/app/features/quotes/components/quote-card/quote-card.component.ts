@@ -4,7 +4,7 @@ import { Quote } from '../../models/quote.model';
 @Component({
   selector: 'app-quote-card',
   template: `
-    <div class="card is-rounded">
+    <div class="card is-rounded has-horizontal-margin">
       <div class="card-content">
         <div *ngIf="quote">
           <p class="title has-text-centered">
