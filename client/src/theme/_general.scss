@@ -1,0 +1,11 @@
+html,
+body,
+.container {
+  height: 100%;
+  font-family: 'JetBrains Mono', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url(src/assets/fonts/jetbrains.ttf) format('truetype');
+}

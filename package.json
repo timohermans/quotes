@@ -8,6 +8,9 @@
     }
   },
   "scripts": {
+    "start:dev": "run-p start:client start:server",
+    "start:client": "cd client && yarn start",
+    "start:server": "cd server && yarn start:dev",
     "setup": "run-p setup:client setup:server",
     "setup:client": "cd client && yarn install",
     "setup:server": "cd server && yarn install",

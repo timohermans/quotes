@@ -1,0 +1,59 @@
+import { GetRandomUseCase } from './get-random.use-case';
+import { HttpService } from '@nestjs/common';
+import { GetRandomRequest } from './get-random.request';
+import { EMPTY, Observable, of } from 'rxjs';
+import { AxiosResponse } from 'axios';
+import { GetRandomResult } from './get-random.result';
+import { ConfigService } from '@nestjs/config';
+import * as faker from 'faker';
+
+describe('Quote - UseCase - GetRandom', () => {
+    let useCase: GetRandomUseCase;
+    let httpService: HttpService;
+    let configService: ConfigService;
+
+    beforeEach(() => {
+        httpService = new HttpService();
+        configService = new ConfigService();
+        useCase = new GetRandomUseCase(httpService, configService);
+    });
+
+    it('retrieves a random quote from the external API', async () => {
+        // arrange
+        const externalApi = faker.internet.url();
+        jest.spyOn(configService, 'get').mockImplementation((key: string) =>
+            key === 'QUOTES_EXTERNAL_API_URL' ? externalApi : null,
+        );
+        const apiResponse: AxiosResponse = {
+            data: {
+                author: 'Sam Ewing',
+                id: 33,
+                quote:
+                    'Computers are like bikinis. They save people a lot of guesswork.',
+                permalink: 'http://quotes.stormconsultancy.co.uk/quotes/33',
+            },
+            status: 200,
+            statusText: 'OK',
+            headers: {},
+            config: {},
+        };
+
+        jest.spyOn(httpService, 'get').mockImplementation((url: string) => {
+            if (url === externalApi) {
+                return of(apiResponse);
+            }
+            return EMPTY;
+        });
+
+        // act
+        const result = await useCase.execute(new GetRandomRequest());
+
+        // assert
+        expect(result).toEqual(
+            new GetRandomResult(
+                apiResponse.data.author,
+                apiResponse.data.quote,
+            ),
+        );
+    });
+});

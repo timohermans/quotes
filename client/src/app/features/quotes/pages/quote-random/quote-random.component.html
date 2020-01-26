@@ -1,1 +1,8 @@
-<p>quote-random works!</p>
+<div class="container">
+  <div class="columns">
+    <app-quote-card
+      class="column is-half is-offset-one-quarter"
+      [quote]="quote$ | async"
+    ></app-quote-card>
+  </div>
+</div>

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { QuotesRoutingModule } from './quotes-routing.module';
 import { QuoteRandomComponent } from './pages/quote-random/quote-random.component';
+import { QuoteCardComponent } from './components/quote-card/quote-card.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-    declarations: [QuoteRandomComponent],
-    imports: [CommonModule, QuotesRoutingModule],
+  declarations: [QuoteRandomComponent, QuoteCardComponent],
+  imports: [SharedModule, QuotesRoutingModule],
 })
 export class QuotesModule {}
