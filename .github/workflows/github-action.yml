@@ -1,6 +1,9 @@
 name: Node CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -9,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -17,10 +20,32 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+    - name: Base - install
       run: |
-        yarn setup
-        yarn build --if-present
-        yarn test        
+        yarn install
+    - name: Client - install, build, test
+      run: |
+        yarn setup:client
+        yarn build:client
+        yarn test:client
+    - name: Server - install, build, test
+      run: |
+        yarn setup:server
+        yarn build:server
+        yarn test:server
       env:
         CI: true
+    - name: Client - deploy
+      uses: amondnet/now-deployment@v1
+      with:
+        github-token: ${{ secrets.PR_TOKEN }}
+        zeit-token: ${{ secrets.ZEIT_TOKEN }}
+        now-args: '--prod'
+        working-directory: ./client
+    - name: Server - deploy
+      uses: amondnet/now-deployment@v1
+      with:
+        github-token: ${{ secrets.PR_TOKEN }}
+        zeit-token: ${{ secrets.ZEIT_TOKEN }}
+        now-args: '--prod'
+        working-directory: ./server
