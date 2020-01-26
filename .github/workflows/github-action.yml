@@ -35,12 +35,14 @@ jobs:
     - name: Client - deploy
       uses: amondnet/now-deployment@v1
       with:
-        zeit-token: Qj3fSzOMfwntFyJ1wRO9eQxW
+        github-token: ${{ secrets.PR_TOKEN }}
+        zeit-token: ${{ secrets.ZEIT_TOKEN }}
         now-args: '--prod'
         working-directory: ./client
     - name: Server - deploy
       uses: amondnet/now-deployment@v1
       with:
-        zeit-token: Qj3fSzOMfwntFyJ1wRO9eQxW
+        github-token: ${{ secrets.PR_TOKEN }}
+        zeit-token: ${{ secrets.ZEIT_TOKEN }}
         now-args: '--prod'
         working-directory: ./server
