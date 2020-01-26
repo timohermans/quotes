@@ -26,6 +26,7 @@ jobs:
         yarn build:client
         yarn test:client
     - name: Server - install, build, test
+      run: |
         yarn setup:server
         yarn build:server
         yarn test:server
