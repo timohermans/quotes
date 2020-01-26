@@ -20,7 +20,8 @@ jobs:
     - name: npm install, build, and test
       run: |
         yarn install
-        yarn setup
+        yarn setup:client
+        yarn setup:server
         yarn build --if-present
         yarn test        
       env:
