@@ -37,7 +37,7 @@ jobs:
           yarn setup:client
           yarn build:client
           yarn test:client
-          cd client && npx now --token=${{ secrets.ZEIT_TOKEN }} --prod
+          cd client/dist/quotes  npx now -A ../../now.json --token=${{ secrets.ZEIT_TOKEN }} --prod
         env:
           CI: true
 
