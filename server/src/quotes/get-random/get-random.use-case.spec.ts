@@ -1,7 +1,7 @@
 import { GetRandomUseCase } from './get-random.use-case';
-import { HttpService } from '@nestjs/common';
+import { HttpService, ServiceUnavailableException } from '@nestjs/common';
 import { GetRandomRequest } from './get-random.request';
-import { EMPTY, Observable, of } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 import { AxiosResponse } from 'axios';
 import { GetRandomResult } from './get-random.result';
 import { ConfigService } from '@nestjs/config';
@@ -55,5 +55,18 @@ describe('Quote - UseCase - GetRandom', () => {
                 apiResponse.data.quote,
             ),
         );
+    });
+
+    it('throws an error when the external api is not available', async () => {
+        jest.spyOn(httpService, 'get').mockImplementation(() => {
+            throw new Error('Error code 0');
+        });
+
+        // act
+        try {
+            await useCase.execute(new GetRandomRequest());
+        } catch (error) {
+            expect(error instanceof ServiceUnavailableException).toBeTruthy();
+        }
     });
 });

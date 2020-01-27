@@ -8,9 +8,8 @@ import { Quote } from '../../models/quote.model';
       <div class="card-content">
         <div *ngIf="quote">
           <p class="title has-text-centered">
-            <span class="has-text-danger">"</span>
-            {{ quote.quote }}
-            <span class="has-text-danger">"</span>
+            <span class="has-text-danger">"</span>{{ quote.quote
+            }}<span class="has-text-danger">"</span>
           </p>
           <p></p>
           <p class="subtitle has-text-right">

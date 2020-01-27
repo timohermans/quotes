@@ -3,6 +3,7 @@ import { QuotesController } from './quotes.controller';
 import * as faker from 'faker';
 import { CommandBus } from '@nestjs/cqrs';
 import { GetRandomResult } from './get-random/get-random.result';
+import { ServiceUnavailableException } from '@nestjs/common';
 
 describe('Quotes Controller', () => {
     let controller: QuotesController;
@@ -35,5 +36,20 @@ describe('Quotes Controller', () => {
         const response: GetRandomResult = await controller.getRandom();
 
         expect(response).toEqual(randomResult);
+    });
+
+    it('returns a service unavailable when use case fails', async () => {
+        jest.spyOn(commandBus, 'execute').mockImplementation(() => {
+            throw new ServiceUnavailableException();
+        });
+
+        try {
+            await controller.getRandom();
+        } catch (error) {
+            expect(error.message).toEqual({
+                error: 'Service Unavailable',
+                statusCode: 503,
+            });
+        }
     });
 });
