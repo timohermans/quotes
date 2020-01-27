@@ -1,7 +1,7 @@
 import { CommandHandler } from '@nestjs/cqrs';
 import { GetRandomResult } from './get-random.result';
 import { GetRandomRequest } from './get-random.request';
-import { HttpService } from '@nestjs/common';
+import { HttpService, ServiceUnavailableException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { RandomQuote } from './random-quote.interface';
 
@@ -18,10 +18,14 @@ export class GetRandomUseCase {
             'QUOTES_EXTERNAL_API_URL',
         );
 
-        const result = await this.httpService
-            .get<RandomQuote>(externalApiUrl)
-            .toPromise();
+        try {
+            const result = await this.httpService
+                .get<RandomQuote>(externalApiUrl)
+                .toPromise();
 
-        return new GetRandomResult(result.data.author, result.data.quote);
+            return new GetRandomResult(result.data.author, result.data.quote);
+        } catch (error) {
+            throw new ServiceUnavailableException();
+        }
     }
 }
