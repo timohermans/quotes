@@ -1,4 +1,4 @@
-$default-spacing: 1.5rem;
+$default-spacing: 0.75rem;
 
 .has-horizontal-margin {
   margin: 0 $default-spacing;
@@ -6,4 +6,8 @@ $default-spacing: 1.5rem;
 
 .has-top-margin {
   margin-top: $default-spacing;
+}
+
+.has-bottom-margin {
+  margin-bottom: $default-spacing;
 }

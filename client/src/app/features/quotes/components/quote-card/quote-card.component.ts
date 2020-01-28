@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Quote } from '../../models/quote.model';
 
 @Component({
@@ -6,15 +6,20 @@ import { Quote } from '../../models/quote.model';
   template: `
     <div class="card is-rounded has-horizontal-margin">
       <div class="card-content">
-        <div *ngIf="quote">
+        <div class="has-bottom-margin" *ngIf="quote">
           <p class="title has-text-centered">
             <span class="has-text-danger">"</span>{{ quote.quote
             }}<span class="has-text-danger">"</span>
           </p>
           <p></p>
-          <p class="subtitle has-text-right">
-            {{ quote.author }}
-          </p>
+          <div class="is-flex has-space-between-content">
+            <app-quote-rating
+              (ratingSelect)="rateQuote($event)"
+            ></app-quote-rating>
+            <p class="subtitle has-text-right">
+              {{ quote.author }}
+            </p>
+          </div>
         </div>
       </div>
 
@@ -25,4 +30,15 @@ import { Quote } from '../../models/quote.model';
 })
 export class QuoteCardComponent {
   @Input() quote: Quote;
+  @Output() rate = new EventEmitter<Quote>();
+
+  public rateQuote(rating: number): void {
+    if (!this.quote) {
+      return;
+    }
+
+    this.quote.userRating = rating;
+
+    this.rate.emit(this.quote);
+  }
 }

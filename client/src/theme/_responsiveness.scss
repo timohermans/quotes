@@ -3,6 +3,14 @@
   flex-direction: column;
 }
 
+.are-center-aligned {
+  align-items: center;
+}
+
 .is-aligned-at-end {
   align-self: flex-end;
+}
+
+.has-space-between-content {
+  justify-content: space-between;
 }

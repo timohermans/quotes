@@ -4,6 +4,8 @@ import * as faker from 'faker';
 import { CommandBus } from '@nestjs/cqrs';
 import { GetRandomResult } from './get-random/get-random.result';
 import { ServiceUnavailableException } from '@nestjs/common';
+import { RateCommand } from './rate/rate.command';
+import { RateResult } from './rate/rate.result';
 
 describe('Quotes Controller', () => {
     let controller: QuotesController;
@@ -51,5 +53,25 @@ describe('Quotes Controller', () => {
                 statusCode: 503,
             });
         }
+    });
+
+    it('saves the rating of a quote', async () => {
+        const quoteAuthor = faker.name.firstName();
+        const quoteContent = faker.random.words(20);
+        const rating = faker.random.number(5);
+        const expectedResult = new RateResult(
+            faker.random.word(),
+            faker.random.words(),
+        );
+
+        jest.spyOn(commandBus, 'execute').mockImplementation(() =>
+            Promise.resolve(expectedResult),
+        );
+
+        const response = await controller.rate(
+            new RateCommand(quoteAuthor, quoteContent, rating),
+        );
+
+        expect(response).toEqual(expectedResult);
     });
 });

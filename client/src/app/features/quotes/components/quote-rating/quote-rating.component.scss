@@ -1,0 +1,13 @@
+.ratings {
+  height: 35px;
+}
+
+.rating {
+  color: #f9d917;
+  font-size: 120%;
+  transition: font-size 0.3s;
+}
+
+.is-hovered {
+  font-size: 200%;
+}
