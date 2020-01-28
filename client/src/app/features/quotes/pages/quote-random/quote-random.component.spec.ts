@@ -58,7 +58,7 @@ describe('QuoteRandomComponent', () => {
     });
   });
 
-  it('saves a rating of a quote to through the service with loading', () => {
+  it('saves a rating of a quote through the service', () => {
     // arrange
     const expectedQuote = createRandomQuote();
     service.getRandom.mockReturnValue(of(expectedQuote));

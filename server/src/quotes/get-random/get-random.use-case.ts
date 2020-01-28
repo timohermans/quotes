@@ -12,8 +12,7 @@ export class GetRandomUseCase {
         private readonly configService: ConfigService,
     ) {}
 
-    // async execute(request: GetRequest) {
-    async execute(request: GetRandomRequest): Promise<GetRandomResult> {
+    async execute(_: GetRandomRequest): Promise<GetRandomResult> {
         const externalApiUrl = this.configService.get(
             'QUOTES_EXTERNAL_API_URL',
         );
