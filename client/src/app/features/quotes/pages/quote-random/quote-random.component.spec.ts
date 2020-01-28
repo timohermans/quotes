@@ -5,8 +5,8 @@ import { of } from 'rxjs';
 import { IsLoadingService } from '@service-work/is-loading';
 import { take } from 'rxjs/operators';
 import { createRandomQuote } from '../../quotes.test-utils';
-import DoneCallback = jest.DoneCallback;
 import { fakeAsync, tick } from '@angular/core/testing';
+import DoneCallback = jest.DoneCallback;
 
 jest.mock('../../services/quote.service');
 jest.mock('@service-work/is-loading');
@@ -34,6 +34,22 @@ describe('QuoteRandomComponent', () => {
     // assert
     component.quote$.subscribe((quote: Quote) => {
       expect(quote).toEqual(expectedQuote);
+      done();
+    });
+  });
+
+  it('fetches popular quotes on page start', (done: DoneCallback) => {
+    // arrange
+    const expectedQuote = createRandomQuote();
+
+    service.getPopular.mockReturnValue(of([expectedQuote]));
+
+    // act
+    component = new QuoteRandomComponent(service, loadingService);
+
+    // assert
+    component.popularQuotes$.subscribe((quotes: Quote[]) => {
+      expect(quotes).toEqual([expectedQuote]);
       done();
     });
   });

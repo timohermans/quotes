@@ -2,3 +2,14 @@
   position: relative;
   min-height: 200px;
 }
+
+:host.mini {
+  .card {
+    min-height: unset;
+  }
+
+  .title,
+  .subtitle {
+    font-size: 70%;
+  }
+}

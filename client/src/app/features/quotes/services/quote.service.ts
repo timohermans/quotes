@@ -4,7 +4,10 @@ import { Quote } from '../models/quote.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
-import { QuoteResource } from '../resources/quote.resource';
+import {
+  QuoteResource,
+  QuoteResourceCollection,
+} from '../resources/quote.resource';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +15,7 @@ import { QuoteResource } from '../resources/quote.resource';
 export class QuoteService {
   public static loadingKeyForRating = 'rating';
   public static delayForNewQuote = 3000;
+  public static ratings = [1, 2, 3, 4, 5];
 
   private readonly quotesApiUrl = `${environment.apiUrl}/quotes`;
 
@@ -37,5 +41,17 @@ export class QuoteService {
     return this.httpClient
       .post<QuoteResource>(`${this.quotesApiUrl}/rate`, quote)
       .pipe(map(resource => Quote.fromResource(resource)));
+  }
+
+  public getPopular(): Observable<Quote[]> {
+    return this.httpClient
+      .get<QuoteResourceCollection>(`${this.quotesApiUrl}/popular`)
+      .pipe(
+        map(resourceCollection =>
+          resourceCollection.quotes.map(resource =>
+            Quote.fromResource(resource)
+          )
+        )
+      );
   }
 }

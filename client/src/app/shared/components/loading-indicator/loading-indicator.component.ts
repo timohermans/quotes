@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-loading-indicator',
   template: `
-    <div [class.loaded]="('default' | swIsLoading | async) === false">
+    <div [class.loaded]="(loadingKey | swIsLoading | async) === false">
       <div id="loader-wrapper">
         <div id="loader"></div>
 
@@ -15,5 +15,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./loading-indicator.component.scss'],
 })
 export class LoadingIndicatorComponent {
+  @Input() loadingKey = 'default';
+
   constructor() {}
 }

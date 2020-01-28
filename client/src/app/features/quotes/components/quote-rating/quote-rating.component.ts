@@ -28,12 +28,14 @@ import { QuoteService } from '../../services/quote.service';
         (click)="selectRating(rating)"
       >
       </fa-icon>
-      <fa-icon
-        *ngIf="loadingKeyForRating | swIsLoading | async"
-        class="has-horizontal-margin"
-        [icon]="spinner"
-        [spin]="true"
-      ></fa-icon>
+      <div>
+        <fa-icon
+          *ngIf="loadingKeyForRating | swIsLoading | async"
+          class="has-horizontal-margin"
+          [icon]="spinner"
+          [spin]="true"
+        ></fa-icon>
+      </div>
     </div>
   `,
   styleUrls: ['./quote-rating.component.scss'],
@@ -42,11 +44,12 @@ export class QuoteRatingComponent implements OnInit, OnChanges {
   @Input() ratingSelected?: number = null;
   @Output() ratingSelect = new EventEmitter<number>();
 
-  public ratings = [1, 2, 3, 4, 5];
+  private openStar = faStar;
+  private fullStar = fullStar;
+
+  public ratings = QuoteService.ratings;
   public ratingsMarked: number[] = [];
   public ratingHoveredOn?: number = null;
-  public openStar = faStar;
-  public fullStar = fullStar;
   public spinner = faCircleNotch;
   public loadingKeyForRating = QuoteService.loadingKeyForRating;
 

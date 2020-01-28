@@ -3,6 +3,7 @@
     <div class="quote column is-half is-offset-one-quarter is-flex-column">
       <app-quote-card
         [quote]="quote$ | async"
+        loadingKey="random"
         (rate)="saveQuoteRating($event)"
       ></app-quote-card>
       <app-button-link
@@ -18,4 +19,8 @@
       </app-button-link>
     </div>
   </div>
+
+  <app-quote-popular-list
+    [quotes]="popularQuotes$ | async"
+  ></app-quote-popular-list>
 </div>
