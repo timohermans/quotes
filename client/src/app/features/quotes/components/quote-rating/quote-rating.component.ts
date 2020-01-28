@@ -9,6 +9,8 @@ import {
 } from '@angular/core';
 import { faStar } from '@fortawesome/free-regular-svg-icons/faStar';
 import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons/faStar';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons/faCircleNotch';
+import { QuoteService } from '../../services/quote.service';
 
 @Component({
   selector: 'app-quote-rating',
@@ -26,6 +28,12 @@ import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons/faStar';
         (click)="selectRating(rating)"
       >
       </fa-icon>
+      <fa-icon
+        *ngIf="loadingKeyForRating | swIsLoading | async"
+        class="has-horizontal-margin"
+        [icon]="spinner"
+        [spin]="true"
+      ></fa-icon>
     </div>
   `,
   styleUrls: ['./quote-rating.component.scss'],
@@ -39,6 +47,8 @@ export class QuoteRatingComponent implements OnInit, OnChanges {
   public ratingHoveredOn?: number = null;
   public openStar = faStar;
   public fullStar = fullStar;
+  public spinner = faCircleNotch;
+  public loadingKeyForRating = QuoteService.loadingKeyForRating;
 
   constructor() {}
 

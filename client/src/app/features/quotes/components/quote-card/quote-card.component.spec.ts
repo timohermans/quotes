@@ -1,5 +1,5 @@
 import { QuoteCardComponent } from './quote-card.component';
-import { QuoteRating } from '../../models/quote.model';
+import { Quote } from '../../models/quote.model';
 import { createRandomQuote } from '../../quotes.test-utils';
 import { take } from 'rxjs/operators';
 import DoneCallback = jest.DoneCallback;
@@ -14,17 +14,15 @@ describe('QuoteCardComponent', () => {
     component.quote = expectedQuote;
 
     // assert
-    const assertFn = (quoteRating: QuoteRating) => {
-      expect(quoteRating).toEqual({
-        quote: expectedQuote,
-        rating: expectedRating,
-      });
+    const assertFn = (quoteRating: Quote) => {
+      expectedQuote.userRating = expectedRating;
+      expect(quoteRating).toEqual(expectedQuote);
 
       done();
     };
 
     // act
-    component.quoteRating.pipe(take(1)).subscribe(assertFn);
+    component.rate.pipe(take(1)).subscribe(assertFn);
     component.rateQuote(5);
   });
 });

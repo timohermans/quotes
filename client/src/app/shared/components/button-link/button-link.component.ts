@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-button-link',
   template: `
     <button class="button is-text is-small">
-      Show me another
+      <ng-content></ng-content>
     </button>
   `,
   styleUrls: ['./button-link.component.scss'],

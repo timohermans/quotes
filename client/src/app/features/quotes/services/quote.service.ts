@@ -10,11 +10,16 @@ import { QuoteResource } from '../resources/quote.resource';
   providedIn: 'root',
 })
 export class QuoteService {
+  public static loadingKeyForRating = 'rating';
+  public static delayForNewQuote = 3000;
+
+  private readonly quotesApiUrl = `${environment.apiUrl}/quotes`;
+
   constructor(private httpClient: HttpClient) {}
 
   public getRandom(): Observable<Quote> {
     return this.httpClient
-      .get<QuoteResource>(`${environment.apiUrl}/quotes/random`)
+      .get<QuoteResource>(`${this.quotesApiUrl}/random`)
       .pipe(
         map(resource => Quote.fromResource(resource)),
         catchError((_: HttpErrorResponse) => {
@@ -26,5 +31,11 @@ export class QuoteService {
           );
         })
       );
+  }
+
+  public rateQuote(quote: Quote): Observable<Quote> {
+    return this.httpClient
+      .post<QuoteResource>(`${this.quotesApiUrl}/rate`, quote)
+      .pipe(map(resource => Quote.fromResource(resource)));
   }
 }
