@@ -15,6 +15,7 @@ import {
 export class QuoteService {
   public static loadingKeyForRating = 'rating';
   public static delayForNewQuote = 3000;
+  public static ratings = [1, 2, 3, 4, 5];
 
   private readonly quotesApiUrl = `${environment.apiUrl}/quotes`;
 

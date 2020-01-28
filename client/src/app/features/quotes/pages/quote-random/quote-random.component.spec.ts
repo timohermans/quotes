@@ -5,8 +5,8 @@ import { of } from 'rxjs';
 import { IsLoadingService } from '@service-work/is-loading';
 import { take } from 'rxjs/operators';
 import { createRandomQuote } from '../../quotes.test-utils';
-import DoneCallback = jest.DoneCallback;
 import { fakeAsync, tick } from '@angular/core/testing';
+import DoneCallback = jest.DoneCallback;
 
 jest.mock('../../services/quote.service');
 jest.mock('@service-work/is-loading');

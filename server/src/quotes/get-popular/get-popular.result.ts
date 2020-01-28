@@ -8,7 +8,9 @@ export class GetPopularResult {
         this.quotes = [];
     }
 
-    public static fromDocuments(quoteDocuments: QuoteDocument[]): GetPopularResult {
+    public static fromDocuments(
+        quoteDocuments: QuoteDocument[],
+    ): GetPopularResult {
         const result = new GetPopularResult();
 
         if (quoteDocuments) {

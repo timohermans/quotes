@@ -47,7 +47,7 @@ export class DatabaseService {
     ): Promise<T[]> {
         return this.db
             .collection(collectionName)
-            .orderBy(orderByField)
+            .orderBy(orderByField, 'desc')
             .limit(limit)
             .get()
             .then(querySnapshot => {

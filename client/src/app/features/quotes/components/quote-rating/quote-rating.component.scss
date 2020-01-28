@@ -3,7 +3,7 @@
 }
 
 .rating {
-  color: #f9d917;
+  color: var(--star-color);
   font-size: 120%;
   transition: font-size 0.3s;
 }

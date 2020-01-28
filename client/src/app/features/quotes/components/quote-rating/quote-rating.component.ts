@@ -44,11 +44,12 @@ export class QuoteRatingComponent implements OnInit, OnChanges {
   @Input() ratingSelected?: number = null;
   @Output() ratingSelect = new EventEmitter<number>();
 
-  public ratings = [1, 2, 3, 4, 5];
+  private openStar = faStar;
+  private fullStar = fullStar;
+
+  public ratings = QuoteService.ratings;
   public ratingsMarked: number[] = [];
   public ratingHoveredOn?: number = null;
-  public openStar = faStar;
-  public fullStar = fullStar;
   public spinner = faCircleNotch;
   public loadingKeyForRating = QuoteService.loadingKeyForRating;
 

@@ -6,7 +6,7 @@ import { Quote } from '../../models/quote.model';
   template: `
     <div class="card is-rounded has-horizontal-margin">
       <div class="card-content">
-        <div class="has-bottom-margin" *ngIf="quote">
+        <div class="" *ngIf="quote">
           <p class="title has-text-centered">
             <span class="has-text-danger">"</span>{{ quote.quote
             }}<span class="has-text-danger">"</span>
@@ -15,7 +15,7 @@ import { Quote } from '../../models/quote.model';
           <div class="is-flex has-space-between-content">
             <div>
               <app-quote-rating
-                *ngIf="canVote"
+                *ngIf="!areResultsVisible"
                 (ratingSelect)="rateQuote($event)"
               ></app-quote-rating>
             </div>
@@ -23,18 +23,29 @@ import { Quote } from '../../models/quote.model';
               {{ quote.author }}
             </p>
           </div>
+          <div class="has-top-margin" *ngIf="areResultsVisible">
+            <app-quote-rating-result [quote]="quote"></app-quote-rating-result>
+          </div>
         </div>
       </div>
 
-      <app-loading-indicator></app-loading-indicator>
+      <app-loading-indicator [loadingKey]="loadingKey"></app-loading-indicator>
     </div>
   `,
   styleUrls: ['./quote-card.component.scss'],
 })
 export class QuoteCardComponent {
   @Input() quote: Quote;
-  @Input() canVote = true;
+  @Input() loadingKey: string;
   @Output() rate = new EventEmitter<Quote>();
+
+  public get areResultsVisible(): boolean {
+    return !!(
+      this.quote &&
+      this.quote.ratingAverage &&
+      this.quote.amountOfVotes
+    );
+  }
 
   public rateQuote(rating: number): void {
     if (!this.quote) {
