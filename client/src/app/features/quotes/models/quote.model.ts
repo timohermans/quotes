@@ -7,3 +7,8 @@ export class Quote {
     return new Quote(resource.author, resource.quote);
   }
 }
+
+export interface QuoteRating {
+  quote: Quote;
+  rating: number;
+}

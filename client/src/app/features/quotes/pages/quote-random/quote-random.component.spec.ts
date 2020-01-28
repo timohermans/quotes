@@ -1,11 +1,11 @@
 import { QuoteRandomComponent } from './quote-random.component';
 import { QuoteService } from '../../services/quote.service';
-import DoneCallback = jest.DoneCallback;
 import { Quote } from '../../models/quote.model';
-import * as faker from 'faker';
 import { of } from 'rxjs';
 import { IsLoadingService } from '@service-work/is-loading';
 import { take } from 'rxjs/operators';
+import { createRandomQuote } from '../../quotes.test-utils';
+import DoneCallback = jest.DoneCallback;
 
 jest.mock('../../services/quote.service');
 jest.mock('@service-work/is-loading');
@@ -14,9 +14,6 @@ describe('QuoteRandomComponent', () => {
   let component: QuoteRandomComponent;
   let service: jest.Mocked<QuoteService>;
   let loadingService: jest.Mocked<IsLoadingService>;
-
-  const createRandomQuote = () =>
-    new Quote(faker.name.firstName(), faker.random.words(5));
 
   beforeEach(() => {
     service = new QuoteService(null) as jest.Mocked<QuoteService>;

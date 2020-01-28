@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuoteService } from '../../services/quote.service';
-import { Quote } from '../../models/quote.model';
+import { Quote, QuoteRating } from '../../models/quote.model';
 import { Observable } from 'rxjs';
 import { IsLoadingService } from '@service-work/is-loading';
 
@@ -26,4 +26,6 @@ export class QuoteRandomComponent implements OnInit {
   private loadRandomQuote(): Observable<Quote> {
     return this.loadingService.add(this.quoteService.getRandom());
   }
+
+  public saveQuoteRating(_: QuoteRating): void {}
 }

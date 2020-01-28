@@ -1,7 +1,10 @@
 <div class="container">
   <div class="columns">
     <div class="quote column is-half is-offset-one-quarter is-flex-column">
-      <app-quote-card [quote]="quote$ | async"></app-quote-card>
+      <app-quote-card
+        [quote]="quote$ | async"
+        (quoteRating)="saveQuoteRating($event)"
+      ></app-quote-card>
       <app-button-link
         class="has-top-margin is-aligned-at-end"
         (click)="getNewRandomQuote()"
