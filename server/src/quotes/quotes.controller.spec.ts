@@ -59,7 +59,10 @@ describe('Quotes Controller', () => {
         const quoteAuthor = faker.name.firstName();
         const quoteContent = faker.random.words(20);
         const rating = faker.random.number(5);
-        const expectedResult = new RateResult(faker.random.uuid());
+        const expectedResult = new RateResult(
+            faker.random.word(),
+            faker.random.words(),
+        );
 
         jest.spyOn(commandBus, 'execute').mockImplementation(() =>
             Promise.resolve(expectedResult),

@@ -1,3 +1,3 @@
 export class RateResult {
-    constructor(public readonly id: string) {}
+    constructor(public author: string, public quote: string) {}
 }

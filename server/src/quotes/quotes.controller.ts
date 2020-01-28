@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { GetRandomResult } from './get-random/get-random.result';
 import { CommandBus } from '@nestjs/cqrs';
 import { GetRandomRequest } from './get-random/get-random.request';
@@ -15,7 +15,7 @@ export class QuotesController {
     }
 
     @Post('rate')
-    async rate(command: RateCommand): Promise<RateResult> {
+    async rate(@Body() command: RateCommand): Promise<RateResult> {
         return await this.commandBus.execute(command);
     }
 }

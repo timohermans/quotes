@@ -9,8 +9,12 @@
         class="has-top-margin is-aligned-at-end"
         (click)="getNewRandomQuote()"
       >
-        <ng-container *ngIf="!isGoingToGetNewQuote">Show me another</ng-container>
-        <ng-container *ngIf="isGoingToGetNewQuote">Going to get you another quote, hang on..</ng-container>
+        <ng-container *ngIf="!isGoingToGetNewQuote"
+          >Show me another</ng-container
+        >
+        <ng-container *ngIf="isGoingToGetNewQuote"
+          >Going to get you another quote, hang on..</ng-container
+        >
       </app-button-link>
     </div>
   </div>
