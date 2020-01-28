@@ -1,8 +1,12 @@
 import { QuoteRatingComponent } from './quote-rating.component';
 import { take } from 'rxjs/operators';
+import { faStar } from '@fortawesome/free-regular-svg-icons/faStar';
+import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons/faStar';
 import DoneCallback = jest.DoneCallback;
 
 describe('QuoteRatingComponent', () => {
+  const openStar = faStar;
+
   it('marks every rating before as hovered', () => {
     // arrange
     const component = new QuoteRatingComponent();
@@ -25,11 +29,11 @@ describe('QuoteRatingComponent', () => {
     expect(component.isSelected(3)).toBeTruthy();
     expect(component.isSelected(4)).toBeFalsy();
     expect(component.isSelected(5)).toBeFalsy();
-    expect(component.getIconFor(1)).toEqual(component.fullStar);
-    expect(component.getIconFor(2)).toEqual(component.fullStar);
-    expect(component.getIconFor(3)).toEqual(component.fullStar);
-    expect(component.getIconFor(4)).toEqual(component.openStar);
-    expect(component.getIconFor(5)).toEqual(component.openStar);
+    expect(component.getIconFor(1)).toEqual(fullStar);
+    expect(component.getIconFor(2)).toEqual(fullStar);
+    expect(component.getIconFor(3)).toEqual(fullStar);
+    expect(component.getIconFor(4)).toEqual(openStar);
+    expect(component.getIconFor(5)).toEqual(openStar);
   });
 
   it('has all open stars when leaving the star container', () => {
@@ -123,11 +127,11 @@ describe('QuoteRatingComponent', () => {
 
     // assert
     expect(component.isHoveredOn(3)).toBeFalsy();
-    expect(component.getIconFor(1)).toEqual(component.fullStar);
-    expect(component.getIconFor(2)).toEqual(component.fullStar);
-    expect(component.getIconFor(3)).toEqual(component.fullStar);
-    expect(component.getIconFor(4)).toEqual(component.openStar);
-    expect(component.getIconFor(5)).toEqual(component.openStar);
+    expect(component.getIconFor(1)).toEqual(fullStar);
+    expect(component.getIconFor(2)).toEqual(fullStar);
+    expect(component.getIconFor(3)).toEqual(fullStar);
+    expect(component.getIconFor(4)).toEqual(openStar);
+    expect(component.getIconFor(5)).toEqual(openStar);
   });
 
   it('when a rating is selected, leaving the container does not remove the ratings', () => {
@@ -144,9 +148,9 @@ describe('QuoteRatingComponent', () => {
     component.removeSelectedRatings();
 
     // assert
-    expect(component.getIconFor(1)).toEqual(component.fullStar);
-    expect(component.getIconFor(2)).toEqual(component.fullStar);
-    expect(component.getIconFor(3)).toEqual(component.fullStar);
+    expect(component.getIconFor(1)).toEqual(fullStar);
+    expect(component.getIconFor(2)).toEqual(fullStar);
+    expect(component.getIconFor(3)).toEqual(fullStar);
   });
 
   it('when a rating is selected, emit a rating event', (done: DoneCallback) => {
