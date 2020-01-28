@@ -1,4 +1,6 @@
-<p class="has-horizontal-margin">What other people found interesting</p>
+<p *ngIf="anyQuotes" class="has-horizontal-margin">
+  What other people found interesting
+</p>
 <div class="columns">
   <div class="column" *ngFor="let quote of quotes">
     <app-quote-card class="mini" [quote]="quote"></app-quote-card>
