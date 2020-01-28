@@ -23,14 +23,14 @@ jobs:
       - name: Base - install
         run: |
           yarn install
-      - name: Server - install, build, test, deploy
+      - name: Server - install, build, test
         run: |
           yarn setup:server
           yarn build:server
           yarn test:server
         env:
           CI: true
-      - name: Client - install, build, test, deploy
+      - name: Client - install, build, test
         run: |
           yarn setup:client
           yarn build:client
@@ -40,6 +40,6 @@ jobs:
       - name: Server & Client - deploy
         run: |
           cd server && npx now --token=${{ secrets.ZEIT_TOKEN }} --prod
-          cd client/dist/quotes && npx now -A ../../now.json --token=${{ secrets.ZEIT_TOKEN }} --prod
+          cd ../client/dist/quotes && npx now -A ../../now.json --token=${{ secrets.ZEIT_TOKEN }} --prod
         env:
           CI: true
