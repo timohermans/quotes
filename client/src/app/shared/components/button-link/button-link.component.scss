@@ -1,0 +1,9 @@
+.button.is-text {
+  opacity: 0.8;
+  text-align: right;
+  text-decoration: none;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
