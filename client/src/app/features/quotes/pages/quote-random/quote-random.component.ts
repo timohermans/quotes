@@ -10,9 +10,7 @@ import { IsLoadingService } from '@service-work/is-loading';
   styleUrls: ['./quote-random.component.scss'],
 })
 export class QuoteRandomComponent implements OnInit {
-  public quote$: Observable<Quote> = this.loadingService.add(
-    this.quoteService.getRandom()
-  );
+  public quote$: Observable<Quote> = this.loadRandomQuote();
 
   constructor(
     private quoteService: QuoteService,
@@ -20,4 +18,12 @@ export class QuoteRandomComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  public getNewRandomQuote(): void {
+    this.quote$ = this.loadRandomQuote();
+  }
+
+  private loadRandomQuote(): Observable<Quote> {
+    return this.loadingService.add(this.quoteService.getRandom());
+  }
 }

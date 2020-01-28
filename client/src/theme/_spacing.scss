@@ -3,3 +3,7 @@ $default-spacing: 1.5rem;
 .has-horizontal-margin {
   margin: 0 $default-spacing;
 }
+
+.has-top-margin {
+  margin-top: $default-spacing;
+}
