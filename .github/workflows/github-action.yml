@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -28,7 +27,6 @@ jobs:
           yarn setup:server
           yarn build:server
           yarn test:server
-          cd server && npx now --token=${{ secrets.ZEIT_TOKEN }} --prod
         env:
           CI: true
       - name: Client - install, build, test, deploy
@@ -36,7 +34,11 @@ jobs:
           yarn setup:client
           yarn build:client
           yarn test:client
+        env:
+          CI: true
+      - name: Server & Client - deploy
+        run: |
+          cd server && npx now --token=${{ secrets.ZEIT_TOKEN }} --prod
           cd client/dist/quotes && npx now -A ../../now.json --token=${{ secrets.ZEIT_TOKEN }} --prod
         env:
           CI: true
-
