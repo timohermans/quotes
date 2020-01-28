@@ -13,9 +13,12 @@ import { Quote } from '../../models/quote.model';
           </p>
           <p></p>
           <div class="is-flex has-space-between-content">
-            <app-quote-rating
-              (ratingSelect)="rateQuote($event)"
-            ></app-quote-rating>
+            <div>
+              <app-quote-rating
+                *ngIf="canVote"
+                (ratingSelect)="rateQuote($event)"
+              ></app-quote-rating>
+            </div>
             <p class="subtitle has-text-right">
               {{ quote.author }}
             </p>
@@ -30,6 +33,7 @@ import { Quote } from '../../models/quote.model';
 })
 export class QuoteCardComponent {
   @Input() quote: Quote;
+  @Input() canVote = true;
   @Output() rate = new EventEmitter<Quote>();
 
   public rateQuote(rating: number): void {

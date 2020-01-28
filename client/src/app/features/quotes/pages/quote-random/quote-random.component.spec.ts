@@ -38,6 +38,22 @@ describe('QuoteRandomComponent', () => {
     });
   });
 
+  it('fetches popular quotes on page start', (done: DoneCallback) => {
+    // arrange
+    const expectedQuote = createRandomQuote();
+
+    service.getPopular.mockReturnValue(of([expectedQuote]));
+
+    // act
+    component = new QuoteRandomComponent(service, loadingService);
+
+    // assert
+    component.popularQuotes$.subscribe((quotes: Quote[]) => {
+      expect(quotes).toEqual([expectedQuote]);
+      done();
+    });
+  });
+
   it('fetches a new quote when user asks for it', (done: DoneCallback) => {
     // arrange
     const expectedFirstQuote = createRandomQuote();

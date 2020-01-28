@@ -40,6 +40,25 @@ export class DatabaseService {
             });
     }
 
+    public getHeadSorted<T>(
+        collectionName: string,
+        orderByField: string,
+        limit: number,
+    ): Promise<T[]> {
+        return this.db
+            .collection(collectionName)
+            .orderBy(orderByField)
+            .limit(limit)
+            .get()
+            .then(querySnapshot => {
+                const results = [];
+                querySnapshot.forEach(doc => {
+                    results.push(doc.data() as T);
+                });
+                return results;
+            });
+    }
+
     public save<T>(
         collectionName: string,
         documentKey: string,

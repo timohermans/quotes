@@ -28,12 +28,14 @@ import { QuoteService } from '../../services/quote.service';
         (click)="selectRating(rating)"
       >
       </fa-icon>
-      <fa-icon
-        *ngIf="loadingKeyForRating | swIsLoading | async"
-        class="has-horizontal-margin"
-        [icon]="spinner"
-        [spin]="true"
-      ></fa-icon>
+      <div>
+        <fa-icon
+          *ngIf="loadingKeyForRating | swIsLoading | async"
+          class="has-horizontal-margin"
+          [icon]="spinner"
+          [spin]="true"
+        ></fa-icon>
+      </div>
     </div>
   `,
   styleUrls: ['./quote-rating.component.scss'],

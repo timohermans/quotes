@@ -4,8 +4,9 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { GetRandomUseCase } from './get-random/get-random.use-case';
 import { DatabaseService } from '../core/database.service';
 import { RateUseCase } from './rate/rate.use-case';
+import { GetPopularUseCase } from './get-popular/get-popular.use-case';
 
-const useCases = [GetRandomUseCase, RateUseCase];
+const useCases = [GetRandomUseCase, RateUseCase, GetPopularUseCase];
 
 @Module({
     imports: [CqrsModule, HttpModule],

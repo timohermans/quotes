@@ -12,6 +12,7 @@ import { delay, tap } from 'rxjs/operators';
 })
 export class QuoteRandomComponent implements OnInit {
   public quote$: Observable<Quote> = this.loadRandomQuote();
+  public popularQuotes$: Observable<Quote[]> = this.quoteService.getPopular();
   public isGoingToGetNewQuote = false;
 
   constructor(
