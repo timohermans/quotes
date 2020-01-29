@@ -41,11 +41,11 @@ The project consists of three components:
 ### Client
 
 - The client is created using [Angular 8](https://www.angular.io/docs) and resides in the `client` folder.
-- [Bulma CSS](https://www.bulma.io) is used as CSS framework
+- [Bulma CSS](https://bulma.io/) is used as CSS framework
 - The structure follows the Angular guidelines. Notable examples:
 
   - _Folder-by-features_ structure
-  - Modules inside the `feature` folder adhere to the [flat principle](https://github.com/timohermans/quotes/projects)
+  - Modules inside the `feature` folder adhere to the [flat principle](https://angular.io/guide/styleguide#flat)
 
 ### API
 
@@ -60,15 +60,15 @@ The project consists of three components:
 
 ### Database
 
-- The database used is [Firebase](https://firebase.google.com/)
+- The database used is [Firestore](https://firebase.google.com/)
 - This is a NoSQL database.
-- Note that this proejct could have been build with the client and Firebase alone. However, this would not show my technical skills on the backend as much.
+- Note that this project could have been build with the client and Firestore alone. However, this would not show my technical skills on the backend as much.
 
 ## Continuous Integration and Deployment
 
 Quality assurance has been implemented on various stages of the development cycle:
 
-- "TDD" has been used creating new feature. TDD here means unit tests have been written on both the front- and backend before any real implementation have been written for **business logic**.
+- "TDD" has been used creating new features. TDD here means unit tests have been written on both the front- and backend before any real implementation have been written for **business logic**.
   - There are some exceptions to above rule
     - I did not write unit tests that also query DOM elements in any way (e.g. with Angular `TestBed`). The reason for this can be found [here](https://medium.com/@marko.bjelac/unit-testing-angular-testbed-considered-harmful-7e2bb8f32586)
     - I have not written any integration / E2E tests due to time constraints and risk of failure
