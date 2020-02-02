@@ -23,6 +23,8 @@ The actual application can be found running at [https://quotes-client.now.sh](ht
 
 - Execute `yarn install` in the root directory
 - Then, execute `yarn setup` in the root directory. This will install dependencies in both the client and server project
+- In the `sever` directory, copy the `.env.example` to `.env` and make sure you have both `QUOTES_EXTERNAL_API_URL` and `DATABASE_CERT` keys filled. 
+  - Note that `DATABASE_CERT` is not in here, because it uses a live firestore. You can add your own or ask me for the certificate
 - Finally, execute `yarn start:dev` to run the client and API at the same time
 
 ## Features
