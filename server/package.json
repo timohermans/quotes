@@ -30,7 +30,7 @@
     "@nestjs/cqrs": "^6.1.0",
     "@nestjs/platform-express": "^6.7.2",
     "class-transformer": "^0.2.3",
-    "class-validator": "^0.11.0",
+    "class-validator": "^0.14.0",
     "firebase-admin": "^8.9.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
